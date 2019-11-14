@@ -23,7 +23,6 @@ export class NewstudentComponent implements OnInit {
   onFormSubmit(event){
     let obs = this.http.createStudent(event);
     obs.subscribe(data => {
-      console.log("success")
       this.route.navigate(['/home'])
     }, err => {
       return;

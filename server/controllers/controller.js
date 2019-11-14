@@ -31,7 +31,6 @@ module.exports = {
         Student.create(req.body)
             .then(data => res.json({message: "success", results: data}))
             .catch(err => res.json({message: "error", results: err}))
-            console.log("did it make it?")
     },
     rateStudent: (req, res) => {
         Student.findOneAndUpdate({_id: req.params.id}, {$set: {rating: req.body.rating}})
@@ -51,7 +50,7 @@ module.exports = {
             .catch(err => res.json({message: "error", results: err}));
     },
     deleteStudent: (req, res) => {
-        Student.findOneAndUpdate({_id: req.params.id})
+        Student.deleteOne({_id: req.params.id})
             .then(data => res.json({message: "success", results: data}))
             .catch(err => res.json({message: "error", results: err}));
     }

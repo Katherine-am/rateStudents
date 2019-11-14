@@ -30,6 +30,6 @@ export class HttpService {
     return this.http.put(`/api/students/${student._id}/editStudent`, student);
   }
   deleteStudent(id){
-    return this.http.delete(`/api/students/${id}/delete`, id)
+    return this.http.delete(`/api/students/${id}/deleteStudent`);
   }
 }

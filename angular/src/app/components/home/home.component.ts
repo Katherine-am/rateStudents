@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   allStudents: any;
   studentToEdit: any;
   studentToRate: any;
+  studentToDelete: any;
   
   constructor(private httpService: HttpService, private router: Router) { }
 
@@ -59,5 +60,12 @@ export class HomeComponent implements OnInit {
 
   giveThisHomieABelt(student){
 
+  }
+
+  deleteThisKid(id){
+    let obs = this.httpService.deleteStudent(id)
+    obs.subscribe((data: any) => {
+      this.getAllStudents();
+    })
   }
 }
