@@ -10,12 +10,17 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   allStudents: any;
   studentToEdit: any;
+  studentToUpdate: any;
   studentToRate: any;
   studentToDelete: any;
+  display: boolean;
   
   constructor(private httpService: HttpService, private router: Router) { }
 
   ngOnInit() {
+    this.studentToRate = {
+      _id: "",
+    }
     this.getAllStudents();
   }
 
@@ -26,33 +31,25 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  addNewPlaya(){
-
-  }
-
   rateThisFool(student){
+    console.log(student)
     this.studentToRate = student;
+
   }
 
   rateFool(event){
     let obs = this.httpService.rateStudentAbility(event._id, event);
     obs.subscribe(data => {
-      this.studentToRate = null;
+      this.studentToRate = {_id: ""};
     })
   }
 
   editThisSucka(student){
-    this.studentToEdit = {
-      _id: student._id,
-      name: student.name,
-      age: student.age,
-      rating: student.rating,
-      beltsReceived: student.beltsReceived
-    }
+    this.studentToEdit = student;
   }
 
   editSucka(event){
-    let obs = this.httpService.editStudent(event)
+    let obs = this.httpService.editStudent(event);
     obs.subscribe(data => {
       this.getAllStudents();
     })
@@ -62,8 +59,8 @@ export class HomeComponent implements OnInit {
 
   }
 
-  deleteThisKid(id){
-    let obs = this.httpService.deleteStudent(id)
+  deleteThisKid(student){
+    let obs = this.httpService.deleteStudent(student._id)
     obs.subscribe((data: any) => {
       this.getAllStudents();
     })
