@@ -13,12 +13,14 @@ export class HomeComponent implements OnInit {
   studentToUpdate: any;
   studentToRate: any;
   studentToDelete: any;
-  display: boolean;
   
   constructor(private httpService: HttpService, private router: Router) { }
 
   ngOnInit() {
     this.studentToRate = {
+      _id: "",
+    }
+    this.studentToUpdate = {
       _id: "",
     }
     this.getAllStudents();
@@ -32,9 +34,7 @@ export class HomeComponent implements OnInit {
   }
 
   rateThisFool(student){
-    console.log(student)
     this.studentToRate = student;
-
   }
 
   rateFool(event){
@@ -44,16 +44,16 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  editThisSucka(student){
-    this.studentToEdit = student;
-  }
+  // editThisSucka(student){
+  //   this.studentToEdit = student;
+  // }
 
-  editSucka(event){
-    let obs = this.httpService.editStudent(event);
-    obs.subscribe(data => {
-      this.getAllStudents();
-    })
-  }
+  // editSucka(event){
+  //   let obs = this.httpService.editStudent(event);
+  //   obs.subscribe(data => {
+  //     this.getAllStudents();
+  //   })
+  // }
 
   giveThisHomieABelt(student){
 

@@ -23,7 +23,7 @@ module.exports = {
             .catch(err => res.json({message: "error", results: err}));
     },
     getOneStudent: (req, res) => {
-        Student.findOne({_id: req.param.id})
+        Student.findOne({_id: req.params.id})
             .then(data => res.json({message: "success", results: data}))
             .catch(err => res.json({message: "error", results: err}));
     },
